@@ -6,7 +6,7 @@
 #import <Quartz/Quartz.h>
 #import <Cocoa/Cocoa.h>
 
-@interface AppController : NSWindowController
+@interface AppController : NSObject
 {
     IBOutlet IKImageBrowserView *imageBrowser;
     IBOutlet NSPopUpButton *categoryPopUpButton;
