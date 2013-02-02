@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  Wallpapers
+*/
+
+BUTTON_EXIT = "終了";
+TEXTVIEW_SCREEN = "画面";
+TEXTVIEW_OPTION = "設定";
+TEXTVIEW_RESOLUTION = "画像解像度";
+TEXTVIEW_CATEGORY = "カテゴリー";
+TEXTVIEW_ZOOM = "ズーム";
+
+MAIN_SCREEN = "メイン画面";
+SCREEN = "画面";
+
+OPTION_PROPORTIONALLY_UP_OR_DOWN_CLIP = "画面全体に表示";
+OPTION_PROPORTIONALLY_UP_OR_DOWN_NOCLIP = "画面に収まるサイズで表示";
+OPTION_AXIS_INDEPENDENTRY = "引き伸ばして画面全体に表示";
+OPTION_NONE = "中央に配置";

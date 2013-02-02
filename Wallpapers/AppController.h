@@ -1,0 +1,33 @@
+//
+//  AppController.h
+//  Wallpapers
+//
+
+#import <Quartz/Quartz.h>
+#import <Cocoa/Cocoa.h>
+
+@interface AppController : NSWindowController
+{
+    IBOutlet IKImageBrowserView *imageBrowser;
+    IBOutlet NSPopUpButton *categoryPopUpButton;
+    IBOutlet NSPopUpButton *screenPopUpButton;
+    IBOutlet NSPopUpButton *scalePopUpButton;
+    IBOutlet NSColorWell *fillColorWell;
+    
+    IBOutlet NSButton *exitButton;
+    IBOutlet NSTextField *screenTextField;
+    IBOutlet NSTextField *optionTextField;
+    IBOutlet NSTextField *categoryTextField;
+    IBOutlet NSTextField *zoomTextField;
+    IBOutlet NSProgressIndicator *loadingIndicator;
+}
+
+@property (retain) NSString *imageRootPath;
+@property (retain) NSString *categoryPath;
+@property (retain) NSMutableArray *images;
+@property (retain) NSScreen *currentScreen;
+
+- (IBAction)fillColorWellDidChange:(id)sender;
+- (IBAction)zoomSliderDidChange:(id)sender;
+
+@end
