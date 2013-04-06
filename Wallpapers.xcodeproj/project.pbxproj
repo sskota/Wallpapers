@@ -15,10 +15,8 @@
 		87705DAA167304C000495FA9 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87705DA9167304C000495FA9 /* AppController.m */; };
 		87705DBA16731FB400495FA9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87705DBC16731FB400495FA9 /* Localizable.strings */; };
 		87705DD01674AC2600495FA9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87705DCF1674AC2600495FA9 /* FileManager.m */; };
-		87705DD51674BC4500495FA9 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87705DD41674BC4500495FA9 /* background.jpg */; };
 		87737DEA1693F35D00C8CD98 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87737DE91693F35D00C8CD98 /* MainMenu.xib */; };
 		87737DF0169539D100C8CD98 /* icons.icns in Resources */ = {isa = PBXBuildFile; fileRef = 87737DEF169539D100C8CD98 /* icons.icns */; };
-		879968111676447600048ADE /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 879968101676447600048ADE /* MainView.m */; };
 		87AD428F1692B6C600280F22 /* Images.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87AD428E1692B6C600280F22 /* Images.bundle */; };
 /* End PBXBuildFile section */
 
@@ -41,11 +39,8 @@
 		87705DBD16731FB600495FA9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87705DCE1674AC2600495FA9 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		87705DCF1674AC2600495FA9 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
-		87705DD41674BC4500495FA9 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Resources/background.jpg; sourceTree = "<group>"; };
 		87737DE91693F35D00C8CD98 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		87737DEF169539D100C8CD98 /* icons.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icons.icns; path = Resources/icons.icns; sourceTree = "<group>"; };
-		8799680F1676447600048ADE /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = SubClasses/MainView.h; sourceTree = "<group>"; };
-		879968101676447600048ADE /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = SubClasses/MainView.m; sourceTree = "<group>"; };
 		87AD428E1692B6C600280F22 /* Images.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Images.bundle; sourceTree = "<group>"; };
 		87AD429B1693499700280F22 /* Wallpapers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Wallpapers.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +107,6 @@
 				87AD428E1692B6C600280F22 /* Images.bundle */,
 				87737DE91693F35D00C8CD98 /* MainMenu.xib */,
 				87705DD31674B35500495FA9 /* Resources */,
-				87705DCA1674A7AE00495FA9 /* SubClasses */,
 				87705D8D1672DBFC00495FA9 /* Supporting Files */,
 				87AD429B1693499700280F22 /* Wallpapers.entitlements */,
 			);
@@ -130,20 +124,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		87705DCA1674A7AE00495FA9 /* SubClasses */ = {
-			isa = PBXGroup;
-			children = (
-				8799680F1676447600048ADE /* MainView.h */,
-				879968101676447600048ADE /* MainView.m */,
-			);
-			name = SubClasses;
-			sourceTree = "<group>";
-		};
 		87705DD31674B35500495FA9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				87737DEF169539D100C8CD98 /* icons.icns */,
-				87705DD41674BC4500495FA9 /* background.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -210,7 +194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				87705DBA16731FB400495FA9 /* Localizable.strings in Resources */,
-				87705DD51674BC4500495FA9 /* background.jpg in Resources */,
 				87AD428F1692B6C600280F22 /* Images.bundle in Resources */,
 				87737DEA1693F35D00C8CD98 /* MainMenu.xib in Resources */,
 				87737DF0169539D100C8CD98 /* icons.icns in Resources */,
@@ -229,7 +212,6 @@
 				87705DA71672E45300495FA9 /* ImageItem.m in Sources */,
 				87705DAA167304C000495FA9 /* AppController.m in Sources */,
 				87705DD01674AC2600495FA9 /* FileManager.m in Sources */,
-				879968111676447600048ADE /* MainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
