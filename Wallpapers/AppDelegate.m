@@ -10,9 +10,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [window setBackgroundColor:[NSColor clearColor]];
-    [window setOpaque:NO];
-    [window setMovableByWindowBackground:YES];
+	// 起動後コードをここに
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
