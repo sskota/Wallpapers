@@ -3,15 +3,8 @@
   Wallpapers
 */
 
-BUTTON_EXIT = "Exit";
-TEXTVIEW_SCREEN = "Screen";
-TEXTVIEW_OPTION = "Option";
-TEXTVIEW_RESOLUTION = "Resolutions";
-TEXTVIEW_CATEGORY = "Categories";
-TEXTVIEW_ZOOM = "Zoom";
-
-MAIN_SCREEN = "Main Screen";
-SCREEN = "Screen";
+MAIN_SCREEN = "Apply to Main Screen";
+SCREEN = "Apply to Screen";
 
 OPTION_PROPORTIONALLY_UP_OR_DOWN_CLIP = "Fill Screen";
 OPTION_PROPORTIONALLY_UP_OR_DOWN_NOCLIP = "Fit to Screen";

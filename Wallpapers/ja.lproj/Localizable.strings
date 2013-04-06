@@ -3,13 +3,6 @@
   Wallpapers
 */
 
-BUTTON_EXIT = "終了";
-TEXTVIEW_SCREEN = "画面";
-TEXTVIEW_OPTION = "設定";
-TEXTVIEW_RESOLUTION = "画像解像度";
-TEXTVIEW_CATEGORY = "カテゴリー";
-TEXTVIEW_ZOOM = "ズーム";
-
 MAIN_SCREEN = "メイン画面";
 SCREEN = "画面";
 
