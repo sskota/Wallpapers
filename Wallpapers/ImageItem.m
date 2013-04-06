@@ -7,8 +7,8 @@
 
 @implementation ImageItem
 
-@synthesize imageURL;
-@synthesize imageResolution;
+@synthesize mImageURL;
+@synthesize mImageTitle;
 
 + (ImageItem *)imageItemWithContentsOfURL:(NSURL *)aURL
 {
@@ -19,16 +19,17 @@
 {    
     self = [super init];
     if (self) {
-        imageURL = [aURL copy];
+
+        mImageURL = [aURL copy];
+
+		// 画像からサイズを取得してタイトルにする
+        NSImage				*image		= [[NSImage alloc] initWithContentsOfURL:mImageURL];
+        NSBitmapImageRep	*imageRep	= [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
+        NSSize				imageSize	= NSMakeSize([imageRep pixelsWide], [imageRep pixelsHigh]);
+        NSString			*width		= [NSString stringWithFormat:@"%d",(int)imageSize.width];
+        NSString			*height		= [NSString stringWithFormat:@"%d",(int)imageSize.height];
         
-        NSImage *image = [[NSImage alloc] initWithContentsOfURL:imageURL];
-        NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
-        NSSize imageSize = NSMakeSize([imageRep pixelsWide], [imageRep pixelsHigh]);
-        
-        NSString *width = [NSString stringWithFormat:@"%d",(int)imageSize.width];
-        NSString *height = [NSString stringWithFormat:@"%d",(int)imageSize.height];
-        
-        imageResolution = [width stringByAppendingFormat:@"x%@", height];
+        mImageTitle = [width stringByAppendingFormat:@"x%@", height];
     }
     return self;
 }
@@ -39,7 +40,7 @@
 
 - (NSString *)imageUID
 {
-	return [imageURL absoluteString];
+	return [mImageURL absoluteString];
 }
 
 - (NSString *)imageRepresentationType
@@ -49,19 +50,19 @@
 
 - (id)imageRepresentation
 {
-	return self.imageURL;
+	return mImageURL;
 }
 
 - (NSString *)imageTitle
 {
-    return imageResolution;
+    return mImageTitle;
     //return [[imageURL absoluteString] lastPathComponent];
 }
 
 - (NSString *)imageSubtitle
 {
     //return imageResolution;
-    return [[imageURL absoluteString] lastPathComponent];
+    return [[mImageURL absoluteString] lastPathComponent];
 }
 
 @end

@@ -7,13 +7,10 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
 
-@interface ImageItem : NSObject {
-    NSURL *imageURL;
-    NSString *imageResolution;
-}
+@interface ImageItem : NSObject
 
-@property (retain) NSURL *imageURL;
-@property (retain) NSString *imageResolution;
+@property (retain) NSURL	*mImageURL;
+@property (retain) NSString	*mImageTitle;
 
 + (ImageItem *)imageItemWithContentsOfURL:(NSURL *)aURL;
 - (id)initWithContentsOfURL:(NSURL *)aURL;
