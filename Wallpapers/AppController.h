@@ -8,24 +8,18 @@
 
 @interface AppController : NSObject
 {
-    IBOutlet IKImageBrowserView *imageBrowser;
-    IBOutlet NSPopUpButton *categoryPopUpButton;
-    IBOutlet NSPopUpButton *screenPopUpButton;
-    IBOutlet NSPopUpButton *scalePopUpButton;
-    IBOutlet NSColorWell *fillColorWell;
-    
-    IBOutlet NSButton *exitButton;
-    IBOutlet NSTextField *screenTextField;
-    IBOutlet NSTextField *optionTextField;
-    IBOutlet NSTextField *categoryTextField;
-    IBOutlet NSTextField *zoomTextField;
-    IBOutlet NSProgressIndicator *loadingIndicator;
+    IBOutlet IKImageBrowserView		*imageBrowser;
+    IBOutlet NSPopUpButton			*categoryPopUpButton;
+    IBOutlet NSPopUpButton			*screenPopUpButton;
+    IBOutlet NSPopUpButton			*scalePopUpButton;
+    IBOutlet NSColorWell			*fillColorWell;
+    IBOutlet NSProgressIndicator	*loadingIndicator;
 }
 
-@property (retain) NSString *imageRootPath;
-@property (retain) NSString *categoryPath;
-@property (retain) NSMutableArray *images;
-@property (retain) NSScreen *currentScreen;
+@property (retain) NSString			*mImageRootPath;
+@property (retain) NSString			*mCategoryPath;
+@property (retain) NSMutableArray	*mImages;
+@property (retain) NSScreen			*mCurrentScreen;
 
 - (IBAction)fillColorWellDidChange:(id)sender;
 - (IBAction)zoomSliderDidChange:(id)sender;
