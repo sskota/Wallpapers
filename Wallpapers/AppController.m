@@ -12,23 +12,23 @@
 
 @implementation AppController
 
-@synthesize mImageRootPath;
-@synthesize mCategoryPath;
-@synthesize mImages;
-@synthesize mCurrentScreen;
+@synthesize imageRootPath;
+@synthesize categoryPath;
+@synthesize images;
+@synthesize currentScreen;
 
 enum SCALE_OPTION
 {
-    SCALE_PROPORTIONALLY_UP_OR_DOWN_CLIP	= 0,
-    SCALE_PROPORTIONALLY_UP_OR_DOWN_NOCLIP	= 1,
-    SCALE_AXIS_INDEPENDENTRY				= 2,
-    SCALE_NONE								= 3,
+    SCALE_PROPORTIONALLY_UP_OR_DOWN_CLIP = 0,
+    SCALE_PROPORTIONALLY_UP_OR_DOWN_NOCLIP = 1,
+    SCALE_AXIS_INDEPENDENTRY = 2,
+    SCALE_NONE = 3,
 };
 
 enum CLIPPING_OPTION
 {
-    CLIPPING_ON		= 1,
-    CLIPPING_OFF	= 0,
+    CLIPPING_ON = 1,
+    CLIPPING_OFF = 0,
 };
 
 /**
@@ -41,20 +41,20 @@ enum CLIPPING_OPTION
 	[imageBrowser setValue:color forKey:IKImageBrowserBackgroundColorKey];
 
 	// バンドルパスから初期ディレクトリの設定
-    NSBundle	*bundle			= [NSBundle mainBundle];
-    NSString	*bundlePath		= [bundle bundlePath];
-	mImageRootPath = [NSString stringWithString:[bundlePath stringByAppendingPathComponent:IMAGES_BUNDLE]];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *bundlePath = [bundle bundlePath];
+	imageRootPath = [NSString stringWithString:[bundlePath stringByAppendingPathComponent:IMAGES_BUNDLE]];
 
 	// データソースの初期化
-	mImages = [[NSMutableArray alloc] init];
+	images = [[NSMutableArray alloc] init];
 
 	// 初期フォルダ内のリストを取得
-    FileManager	*fileManager	= [[FileManager alloc] init];
-    NSArray		*directoryList	= [[NSArray alloc] initWithArray:[fileManager getImageDirectoryList:mImageRootPath]];
+    FileManager *fileManager = [[FileManager alloc] init];
+    NSArray *directoryList = [[NSArray alloc] initWithArray:[fileManager getImageDirectoryList:imageRootPath]];
 
 	[self updateScreenList];
     [self updateScaleList];
-    [self updateScreenOptions:mCurrentScreen];
+    [self updateScreenOptions:currentScreen];
 	[self updateCategoryList:directoryList];
 }
 
@@ -65,10 +65,10 @@ enum CLIPPING_OPTION
 {
 	if (aScreen != nil) {
         
-		NSDictionary	*screenOptions	= [[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:mCurrentScreen];
-		NSNumber		*scalingFactor	= [screenOptions objectForKey:NSWorkspaceDesktopImageScalingKey];
-        NSNumber		*allowClipping	= [screenOptions objectForKey:NSWorkspaceDesktopImageAllowClippingKey];
-        NSInteger		scaleValue;
+		NSDictionary *screenOptions = [[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:currentScreen];
+		NSNumber *scalingFactor = [screenOptions objectForKey:NSWorkspaceDesktopImageScalingKey];
+        NSNumber *allowClipping = [screenOptions objectForKey:NSWorkspaceDesktopImageAllowClippingKey];
+        NSInteger scaleValue;
 
 		switch ([scalingFactor intValue]) {
 		case NSImageScaleProportionallyUpOrDown:
@@ -111,10 +111,10 @@ enum CLIPPING_OPTION
  */
 - (void)updateScreenList
 {
-    NSMenu		*screensMenu	= [[NSMenu alloc] initWithTitle:@"Screens"];
-	NSArray		*screens		= [NSScreen screens];
-    NSScreen	*screen			= [[NSScreen alloc] init];
-	NSInteger	screenIndex		= 1;
+    NSMenu *screensMenu	= [[NSMenu alloc] initWithTitle:@"Screens"];
+	NSArray *screens = [NSScreen screens];
+    NSScreen *screen = [[NSScreen alloc] init];
+	NSInteger screenIndex = 1;
 
 	// 画面数分処理を繰り返してリストを生成
     for (screen in screens) {
@@ -137,7 +137,7 @@ enum CLIPPING_OPTION
 		// メイン画面の場合は選択しておく
 		if (screen == [NSScreen mainScreen]) {
 			[screenPopUpButton selectItem:itemTitle];
-			mCurrentScreen = screen;
+			currentScreen = screen;
 		}
 		screenIndex++;
 	}
@@ -154,30 +154,26 @@ enum CLIPPING_OPTION
 
 	NSMenu *scaleMenu = [[NSMenu alloc] init];
 
-    NSMenuItem *itemFill	= [[NSMenuItem alloc]
-							   initWithTitle:NSLocalizedString(@"OPTION_PROPORTIONALLY_UP_OR_DOWN_CLIP", "")
-							   action:@selector(selectScaleOption:)
-							   keyEquivalent:@""];
+    NSMenuItem *itemFill = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OPTION_PROPORTIONALLY_UP_OR_DOWN_CLIP", "")
+													  action:@selector(selectScaleOption:)
+											   keyEquivalent:@""];
     
-    NSMenuItem *itemFit		= [[NSMenuItem alloc]
-							   initWithTitle:NSLocalizedString(@"OPTION_PROPORTIONALLY_UP_OR_DOWN_NOCLIP", "")
-							   action:@selector(selectScaleOption:)
-							   keyEquivalent:@""];
+    NSMenuItem *itemFit = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OPTION_PROPORTIONALLY_UP_OR_DOWN_NOCLIP", "")
+													 action:@selector(selectScaleOption:)
+											  keyEquivalent:@""];
 
-    NSMenuItem *itemStretch	= [[NSMenuItem alloc]
-							   initWithTitle:NSLocalizedString(@"OPTION_AXIS_INDEPENDENTRY", "")
-							   action:@selector(selectScaleOption:)
-							   keyEquivalent:@""];
+    NSMenuItem *itemStretch	= [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OPTION_AXIS_INDEPENDENTRY", "")
+														 action:@selector(selectScaleOption:)
+												  keyEquivalent:@""];
     
-    NSMenuItem *itemCenter	= [[NSMenuItem alloc]
-							   initWithTitle:NSLocalizedString(@"OPTION_NONE", "")
-							   action:@selector(selectScaleOption:)
-							   keyEquivalent:@""];
+    NSMenuItem *itemCenter = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"OPTION_NONE", "")
+														action:@selector(selectScaleOption:)
+												 keyEquivalent:@""];
     
-    [itemFill		setTarget:self];
-    [itemFit		setTarget:self];
-    [itemStretch	setTarget:self];
-    [itemCenter		setTarget:self];
+    [itemFill setTarget:self];
+    [itemFit setTarget:self];
+    [itemStretch setTarget:self];
+    [itemCenter setTarget:self];
 
     [scaleMenu addItem:itemFill];
     [scaleMenu addItem:itemFit];
@@ -192,10 +188,10 @@ enum CLIPPING_OPTION
  */
 - (void)updateCategoryList:(NSArray *)aList
 {
-    NSMenu		*categoryMenu = [[NSMenu alloc] init];
+    NSMenu *categoryMenu = [[NSMenu alloc] init];
 
 	// カテゴリなしを設定
-    NSMenuItem	*defaultItem = [[NSMenuItem alloc] initWithTitle:NON_CATEGORY action:@selector(selectCategory:) keyEquivalent:@""];
+    NSMenuItem *defaultItem = [[NSMenuItem alloc] initWithTitle:NON_CATEGORY action:@selector(selectCategory:) keyEquivalent:@""];
     [defaultItem setTarget:self];
     [categoryMenu addItem:defaultItem];
 
@@ -225,10 +221,10 @@ enum CLIPPING_OPTION
     [loadingIndicator startAnimation:self];
     [loadingIndicator setHidden:NO];
     
-    [mImages removeAllObjects];
+    [images removeAllObjects];
     
-    FileManager	*manager	= [[FileManager alloc] init];
-    NSArray		*content	= [manager getImageFileList:aURL];
+    FileManager *manager = [[FileManager alloc] init];
+    NSArray *content = [manager getImageFileList:aURL];
     
     for (NSURL *imageURL in content) {
         [self addImage:imageURL];
@@ -255,7 +251,7 @@ enum CLIPPING_OPTION
 - (void)addImage:(NSURL *)aURL
 {
 	ImageItem *item = [ImageItem imageItemWithContentsOfURL:aURL];
-	[mImages addObject:item];
+	[images addObject:item];
 }
 
 /**
@@ -280,13 +276,13 @@ enum CLIPPING_OPTION
 
 	// カテゴリなしの場合は初期ディレクトリを設定
     if ([[categoryPopUpButton titleOfSelectedItem] isEqualToString:NON_CATEGORY]) {
-        mCategoryPath = mImageRootPath;
+        categoryPath = imageRootPath;
     }
 	else {
-        mCategoryPath = [NSString stringWithString:[mImageRootPath stringByAppendingPathComponent:menuString]];
+        categoryPath = [NSString stringWithString:[imageRootPath stringByAppendingPathComponent:menuString]];
     }
     
-    NSURL *directoryURL = [NSURL fileURLWithPath:mCategoryPath];
+    NSURL *directoryURL = [NSURL fileURLWithPath:categoryPath];
     
     // バックグラウンドで画像の追加処理を開始する
     [self performSelectorInBackground:@selector(addImagesFromDirectory:) withObject:directoryURL];
@@ -297,11 +293,11 @@ enum CLIPPING_OPTION
  */
 - (void)selectScreenOption:(id)sender
 {
-	NSMenuItem	*chosenItem	= (NSMenuItem *)sender;
-	NSScreen	*screen		= [chosenItem representedObject];
+	NSMenuItem *chosenItem = (NSMenuItem *)sender;
+	NSScreen *screen = [chosenItem representedObject];
 
 	// 選択された画面アイテムを現在の画面に設定
-	mCurrentScreen = screen;
+	currentScreen = screen;
     
 	[self updateScreenOptions:screen];
 }
@@ -311,40 +307,40 @@ enum CLIPPING_OPTION
  */
 - (void)selectScaleOption:(id)sender
 {
-    NSMutableDictionary		*screenOptions	= [[[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:mCurrentScreen] mutableCopy];
-    NSInteger				scalingFactor	= [scalePopUpButton indexOfSelectedItem];
-    NSInteger				scaleValue;
-    NSInteger				clipValue;
+    NSMutableDictionary *screenOptions = [[[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:currentScreen] mutableCopy];
+    NSInteger scalingFactor = [scalePopUpButton indexOfSelectedItem];
+    NSInteger scaleValue;
+    NSInteger clipValue;
     
     switch (scalingFactor) {
 	case SCALE_PROPORTIONALLY_UP_OR_DOWN_CLIP:
             
-		scaleValue	= NSImageScaleProportionallyUpOrDown;
-		clipValue	= CLIPPING_ON;
+		scaleValue = NSImageScaleProportionallyUpOrDown;
+		clipValue = CLIPPING_ON;
 		break;
             
 	case SCALE_PROPORTIONALLY_UP_OR_DOWN_NOCLIP:
             
-		scaleValue	= NSImageScaleProportionallyUpOrDown;
-		clipValue	= CLIPPING_OFF;
+		scaleValue = NSImageScaleProportionallyUpOrDown;
+		clipValue = CLIPPING_OFF;
 		break;
             
 	case SCALE_AXIS_INDEPENDENTRY:
             
-		scaleValue	= NSImageScaleAxesIndependently;
-		clipValue	= CLIPPING_OFF;
+		scaleValue = NSImageScaleAxesIndependently;
+		clipValue = CLIPPING_OFF;
 		break;
             
 	case SCALE_NONE:
 
-		scaleValue	= NSImageScaleNone;
-		clipValue	= CLIPPING_OFF;
+		scaleValue = NSImageScaleNone;
+		clipValue = CLIPPING_OFF;
 		break;
             
 	default:
             
-		scaleValue	= NSImageScaleProportionallyUpOrDown;
-		clipValue	= CLIPPING_ON;
+		scaleValue = NSImageScaleProportionallyUpOrDown;
+		clipValue = CLIPPING_ON;
 		break;
     }
     
@@ -355,8 +351,8 @@ enum CLIPPING_OPTION
 	[screenOptions setObject:[NSNumber numberWithInteger:clipValue] forKey:NSWorkspaceDesktopImageAllowClippingKey];
 	
     // ワークスペースに反映
-	NSURL *imageURL = [[NSWorkspace sharedWorkspace] desktopImageURLForScreen:mCurrentScreen];
-	[[NSWorkspace sharedWorkspace] setDesktopImageURL:imageURL forScreen:mCurrentScreen options:screenOptions error:nil];
+	NSURL *imageURL = [[NSWorkspace sharedWorkspace] desktopImageURLForScreen:currentScreen];
+	[[NSWorkspace sharedWorkspace] setDesktopImageURL:imageURL forScreen:currentScreen options:screenOptions error:nil];
 }
 
 #pragma mark - Action
@@ -366,15 +362,15 @@ enum CLIPPING_OPTION
  */
 - (IBAction)fillColorWellDidChange:(id)sender
 {
-	NSMutableDictionary		*screenOptions	= [[[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:mCurrentScreen] mutableCopy];
-	NSColor					*fillColorValue	= [fillColorWell color];
+	NSMutableDictionary *screenOptions = [[[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:currentScreen] mutableCopy];
+	NSColor *fillColorValue	= [fillColorWell color];
     
 	// 背景色設定を適用する
 	[screenOptions setObject:fillColorValue forKey:NSWorkspaceDesktopImageFillColorKey];
 	
     // ワークスペースに反映
-	NSURL *imageURL = [[NSWorkspace sharedWorkspace] desktopImageURLForScreen:mCurrentScreen];
-	[[NSWorkspace sharedWorkspace] setDesktopImageURL:imageURL forScreen:mCurrentScreen options:screenOptions error:nil];
+	NSURL *imageURL = [[NSWorkspace sharedWorkspace] desktopImageURLForScreen:currentScreen];
+	[[NSWorkspace sharedWorkspace] setDesktopImageURL:imageURL forScreen:currentScreen options:screenOptions error:nil];
 }
 
 /**
@@ -389,12 +385,12 @@ enum CLIPPING_OPTION
 
 - (NSUInteger)numberOfItemsInImageBrowser:(IKImageBrowserView *)view
 {
-	return [mImages count];
+	return [images count];
 }
 
 - (id)imageBrowser:(IKImageBrowserView *)view itemAtIndex:(NSUInteger)index
 {
-	return [mImages objectAtIndex:index];
+	return [images objectAtIndex:index];
 }
 
 #pragma mark - IKImageBrowserDelegate
@@ -408,16 +404,16 @@ enum CLIPPING_OPTION
 	
 	if ([selectionIndexes count] > 0) {
         
-        NSDictionary	*screenOptions		= [[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:mCurrentScreen];
-        ImageItem		*imageItem			= [mImages objectAtIndex:[selectionIndexes firstIndex]];
-		NSURL			*url				= [imageItem imageRepresentation];
-        NSNumber		*isDirectoryFlag	= nil;
+        NSDictionary *screenOptions = [[NSWorkspace sharedWorkspace] desktopImageOptionsForScreen:currentScreen];
+        ImageItem *imageItem = [images objectAtIndex:[selectionIndexes firstIndex]];
+		NSURL *url = [imageItem imageRepresentation];
+        NSNumber *isDirectoryFlag = nil;
 		
         if ([url getResourceValue:&isDirectoryFlag forKey:NSURLIsDirectoryKey error:nil] && ![isDirectoryFlag boolValue]) {
             
             NSError *error = nil;
 
-            [[NSWorkspace sharedWorkspace] setDesktopImageURL:url forScreen:mCurrentScreen options:screenOptions error:&error];
+            [[NSWorkspace sharedWorkspace] setDesktopImageURL:url forScreen:currentScreen options:screenOptions error:&error];
 
 			if (error) {
 				[NSApp presentError:error];

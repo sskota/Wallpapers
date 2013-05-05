@@ -9,8 +9,8 @@
 
 @interface ImageItem : NSObject
 
-@property (retain) NSURL	*mImageURL;
-@property (retain) NSString	*mImageTitle;
+@property (retain) NSURL *imageURL;
+@property (retain) NSString *imageName;
 
 + (ImageItem *)imageItemWithContentsOfURL:(NSURL *)aURL;
 - (id)initWithContentsOfURL:(NSURL *)aURL;
