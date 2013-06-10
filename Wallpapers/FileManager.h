@@ -7,8 +7,11 @@
 
 @interface FileManager : NSObject
 
-- (NSArray *)getImageDirectoryList:(NSString *)aPath;
-- (NSArray *)getImageFileList:(NSURL *)aURL;
+- (NSArray *)getDirectoryListWithString:(NSString *)aPath;
+- (NSArray *)getDirectoryListWithURL:(NSURL *)aURL;
+- (NSArray *)getFileListWithString:(NSString *)aPath;
+- (NSArray *)getFileListWithURL:(NSURL *)aURL;
 - (BOOL)isFile:(NSURL *)aPath;
+- (BOOL)isDirectory:(NSURL *)aPath;
 
 @end

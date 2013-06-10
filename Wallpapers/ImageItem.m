@@ -5,6 +5,13 @@
 
 #import "ImageItem.h"
 
+@interface ImageItem()
+
+@property (retain) NSURL *imageURL;
+@property (retain) NSString *imageName;
+
+@end
+
 @implementation ImageItem
 
 @synthesize imageURL;
